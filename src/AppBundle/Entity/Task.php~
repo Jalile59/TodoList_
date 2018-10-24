@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * @ORM\Entity
  * @ORM\Table
@@ -41,9 +42,12 @@ class Task
     private $isDone;
     
     /**
-     *@ORM\column(type="array") 
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-   private $roles;
+    private $user;
+    
+
 
     public function __construct()
     {
@@ -120,27 +124,5 @@ class Task
         return $this->isDone;
     }
 
-    /**
-     * Set role
-     *
-     * @param string $role
-     *
-     * @return Task
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
 
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
 }
