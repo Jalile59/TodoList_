@@ -10,6 +10,7 @@ body {
 
 .slide-image {
     width: 100%;
+    margin-top:10px;
 }
 
 .carousel-holder {
@@ -49,6 +50,15 @@ body {
     color: #333;
 }
 
+a {
+	margin: 10px
+}
+
 footer {
     margin: 50px 0;
+}
+
+.btn{
+	
+	margin-bottom: 10px;
 }
