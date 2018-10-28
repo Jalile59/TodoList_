@@ -96,7 +96,7 @@ class TaskController extends Controller
      */
     public function deleteTaskAction(Task $task)
     {
-        
+        // vérification user courant pour la suppression
         $usercurrent = $this->getUser();
         $roleusercurrent = $usercurrent->getRoles();
         $parentTask = $task->getUser();
@@ -107,7 +107,8 @@ class TaskController extends Controller
             
             return $this->redirectToRoute('homepage');
         }
-        // vérification user courant pour la suppression
+        ///////////////////////////////////////////////////
+        
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
         $em->flush();
