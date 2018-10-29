@@ -30,6 +30,8 @@ class TaskController extends Controller
      */
     public function createAction(Request $request)
     {
+
+        
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
 
@@ -94,6 +96,19 @@ class TaskController extends Controller
      */
     public function deleteTaskAction(Task $task)
     {
+        // vérification user courant pour la suppression
+        $usercurrent = $this->getUser();
+        $roleusercurrent = $usercurrent->getRoles();
+        $parentTask = $task->getUser();
+
+        if($usercurrent != $parentTask or $roleusercurrent =='ROLE_ADMIN')
+        {
+            $this->addFlash('error', 'you cannot deleted this task !');
+            
+            return $this->redirectToRoute('homepage');
+        }
+        ///////////////////////////////////////////////////
+        
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
         $em->flush();
