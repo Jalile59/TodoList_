@@ -57,11 +57,12 @@ class UsertControllerTest extends WebTestCase
         
         $this->assertSame('Consulter la liste des tâches à faire', $crawler->filter('.btn-info')->text());
         
+        return $client;
     }
     
     public function testInscription()
     {
-        $client = $this->client;
+        $client = $this->testLogin();
         
         $crawler = $client->request('GET', '/users/create');
         
@@ -94,7 +95,7 @@ class UsertControllerTest extends WebTestCase
     
     public function testListeUser(){
         
-        $client = $this->client;
+        $client = $this->testLogin();
         
         $crawler = $client->request('GET', '/users');
         
@@ -106,7 +107,7 @@ class UsertControllerTest extends WebTestCase
     
     public function testEditUser(){
         
-        $client = $this->client;
+        $client = $this->testLogin();
         
         $crawler = $client->request('GET', '/users/87/edit');
         

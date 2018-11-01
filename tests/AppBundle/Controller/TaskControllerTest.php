@@ -64,10 +64,33 @@ class TaskControllerTest extends WebTestCase
        
       
        
-       echo $client->getResponse()->getContent();
+       //echo $client->getResponse()->getContent();
        
        $this->assertSame('Créer une tâche', $crawler->filter('.pull-right.btn-info')->text());
        
+    }
+    
+    public function testCreateTask(){
+        
+        $client = $this->testLogin();
+        
+        $crawler = $client->request('GET', '/tasks/create');
+        
+        echo $client->getResponse()->getContent();
+        
+        $form = $crawler->selectButton('Ajouter')->form();
+        
+        $form['task[title]'] = 'title_from_test_PHPUNIT';
+        $form['task[content]'] = 'phpunit !';
+        
+        $crawler = $client->submit($form);
+        
+        $crawler = $client->followRedirect();
+        
+        //echo $client->getResponse()->getContent();
+        
+        $this->assertSame('Créer une tâche', $crawler->filter('.pull-right.btn-info')->text());
+        
     }
     
 
