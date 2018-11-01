@@ -7,12 +7,14 @@ use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 class UserController extends Controller
 {
     /**
      * @Route("/users", name="user_list")
-     *  
+     * 
      */
     public function listAction()
     {
@@ -24,14 +26,6 @@ class UserController extends Controller
      */
     public function createAction(Request $request)
     {
-        $rolecurrent = $this->getUser()->getRoles();
-        
-        if($rolecurrent[0] !='ROLE_ADMIN')
-        {
-            $this->addFlash('error', 'you are not Admin !');
-            return $this->redirectToRoute('homepage');
-        }
-        
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         

@@ -16,10 +16,12 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, ['label' => "Nom d'utilisateur"])
+            
             ->add('roles', ChoiceType::class, array('choices' => array(
                 'ROLE_USER'=>'ROLE_USER',
                 'ROLE_ADMIN'=> 'ROLE_ADMIN'
-            )))
+            ),'multiple' => true
+            ))
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les deux mots de passe doivent correspondre.',
