@@ -4,6 +4,7 @@ namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Task;
 
 
 
@@ -76,7 +77,6 @@ class TaskControllerTest extends WebTestCase
         
         $crawler = $client->request('GET', '/tasks/create');
         
-        echo $client->getResponse()->getContent();
         
         $form = $crawler->selectButton('Ajouter')->form();
         
@@ -95,8 +95,67 @@ class TaskControllerTest extends WebTestCase
     
 
     
-
+    public function testTeskToggle() {
+        
+        $client= $this->testLogin();
+        
+        $crawler = $client->request('GET', '/tasks/7/toggle');
+        
+        $crawler = $client->followRedirect();
+        
+        //echo $client->getResponse()->getContent();
+        
+        $this->assertSame('Superbe !', $crawler->filter('strong')->text());
+    }
     
+    public function testEditTask(){
+        
+        $client = $this->testLogin();
+        
+        $crawler = $client->request('GET', '/tasks/7/edit');
+        
+        $form = $crawler->selectButton('Modifier')->form();
+        
+        $form['task[title]'] = 'title_from_test_PHPUNIT_modifier';
+        $form['task[content]'] = 'phpunit !';
+        
+        $crawler = $client->submit($form);
+        
+        $crawler = $client->followRedirect();
+        
+        
+       // echo $client->getResponse()->getContent();
+        
+        $this->assertSame('Créer une tâche', $crawler->filter('.pull-right.btn-info')->text());
+        
+        
+    }
     
+    public function testDeletedTask(){
+        
+        $client = $this->testLogin();
+        
+        $crawler = $client->request('GET', '/tasks/42/delete');
+        
+        $crawler = $client->followRedirect();
+        
+        //echo $client->getResponse()->getContent();
+        
+        $this->assertSame('Superbe !', $crawler->filter('strong')->text());
+        
+    }
+    
+    public function testEntityTask(){
+        
+        $task = new Task();
+        
+        $task->setTitle('un titre');
+        $task->setContent('du contenut');
+        $task->setIsDone(TRUE);
+        
+        
+        $this->assertSame(true, $task->getIsDone());
+        
+    }
 
 }
