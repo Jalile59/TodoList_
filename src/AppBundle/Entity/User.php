@@ -44,7 +44,7 @@ class User implements UserInterface
      * @ORM\Column(type="array")
      * 
      */
-    private $roles;
+    private $roles = array();
     
     public function __construct()
     {
@@ -96,7 +96,7 @@ class User implements UserInterface
     {
        
         $roles = $this->roles ;
-         
+        
         return $roles;
     }
 
@@ -114,7 +114,12 @@ class User implements UserInterface
      */
     public function setRoles( $roles)
     {
-        $this->roles[]= $roles;
+        
+        if($roles[0] === 'ROLE_ADMIN'){
+            $roles[1] = 'ROLE_USER';
+        }
+
+        $this->roles = $roles;
            
         return $this;
     }
