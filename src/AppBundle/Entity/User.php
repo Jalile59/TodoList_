@@ -79,6 +79,7 @@ class User implements UserInterface
 
     public function setPassword($password)
     {
+
         $this->password = $password;
     }
 

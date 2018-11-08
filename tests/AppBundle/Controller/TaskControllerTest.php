@@ -135,7 +135,7 @@ class TaskControllerTest extends WebTestCase
         
         $client = $this->testLogin();
         
-        $crawler = $client->request('GET', '/tasks/42/delete');
+        $crawler = $client->request('GET', '/tasks/43/delete');
         
         $crawler = $client->followRedirect();
         
