@@ -17,7 +17,7 @@ class TaskController extends Controller
     {
         $user = $this->getUser();
         $roleuser = $user->getRoles();
-       
+        
         
         return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('AppBundle:Task')->findAll(),
                                 'roleusercurrernt' => $roleuser[0],
