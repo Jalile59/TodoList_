@@ -7,21 +7,28 @@ use AppBundle\Form\TaskType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\Count;
 
 class TaskController extends Controller
 {
     /**
-     * @Route("/tasks", name="task_list")
+     * @Route("/tasks/{page}", name="task_list",requirements ={"page":"\d+"})
      */
-    public function listAction()
+    public function listAction($page = 1)
     {
         $user = $this->getUser();
         $roleuser = $user->getRoles();
         
+        $data = $this->getDoctrine()->getRepository('AppBundle:Task')->findAll();
         
-        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('AppBundle:Task')->findAll(),
+        $nbredata = count($data);
+        
+        
+        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('AppBundle:Task')->getall_paginat($page),
                                 'roleusercurrernt' => $roleuser[0],
-                                'usercurrent'=> $user
+                                'usercurrent'=> $user,
+                                'page'=>$page,
+                                'maxtask'=> ($nbredata/5)
         ]);
     }
 
