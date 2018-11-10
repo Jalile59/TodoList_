@@ -21,7 +21,7 @@ class TaskController extends Controller
         $data = $request->server->all();
         $url = $data['REQUEST_URI'];
         
-        dump($url);
+        //dump($url);
         
         $cache = new FilesystemAdapter();
         
@@ -34,7 +34,7 @@ class TaskController extends Controller
             $cacheTask->set($dataTask);
             $cache->save($cacheTask);
         }else{
-            dump("dans le cache");
+          //  dump("dans le cache");
             $dataTask = $cacheTask->get();
         }
         
