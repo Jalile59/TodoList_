@@ -8,14 +8,40 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Count;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+
 
 class TaskController extends Controller
 {
     /**
      * @Route("/tasks/{page}", name="task_list",requirements ={"page":"\d+"})
      */
-    public function listAction($page = 1)
+    public function listAction($page = 1, Request $request)
     {
+        $data = $request->server->all();
+        $url = $data['REQUEST_URI'];
+        
+        dump($url);
+        
+        $cache = new FilesystemAdapter();
+        
+        $cacheTask = $cache->getItem(md5($url));
+     
+        if(!$cacheTask->isHit()){
+            
+            $dataTask = $this->getDoctrine()->getRepository('AppBundle:Task')->getall_paginat($page);
+            
+            $cacheTask->set($dataTask);
+            $cache->save($cacheTask);
+        }else{
+            dump("dans le cache");
+            $dataTask = $cacheTask->get();
+        }
+        
+        
+        
+        
+        
         $user = $this->getUser();
         $roleuser = $user->getRoles();
         
@@ -24,7 +50,7 @@ class TaskController extends Controller
         $nbredata = count($data);
         
         
-        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('AppBundle:Task')->getall_paginat($page),
+        return $this->render('task/list.html.twig', ['tasks' => $dataTask,
                                 'roleusercurrernt' => $roleuser[0],
                                 'usercurrent'=> $user,
                                 'page'=>$page,
