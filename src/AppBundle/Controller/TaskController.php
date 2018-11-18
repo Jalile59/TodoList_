@@ -150,4 +150,18 @@ class TaskController extends Controller
 
         return $this->redirectToRoute('task_list');
     }
+    
+    /**
+     * @Route("/clear", name="clearCache")
+     * 
+     */
+    
+    public function clearcache(){
+        
+        $cache = new FilesystemAdapter();
+        
+        $cache->clear();
+        
+        return $this->redirectToRoute('task_list');
+    }
 }
