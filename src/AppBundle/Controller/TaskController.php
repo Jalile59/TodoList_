@@ -45,16 +45,16 @@ class TaskController extends Controller
         $user = $this->getUser();
         $roleuser = $user->getRoles();
         
-        $data = $this->getDoctrine()->getRepository('AppBundle:Task')->findAll();
         
-        $nbredata = count($data);
+        
+        
         
         
         return $this->render('task/list.html.twig', ['tasks' => $dataTask,
                                 'roleusercurrernt' => $roleuser[0],
                                 'usercurrent'=> $user,
-                                'page'=>$page,
-                                'maxtask'=> ($nbredata/5)
+                                'page'=>$page
+                                
         ]);
     }
 

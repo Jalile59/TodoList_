@@ -42,8 +42,9 @@
         	<div class="col-sm-12 col-sm-offset-6" >
         	{% if page != 1 %}<a href="{{ path('task_list', {'page' : page-1}) }}" class="previous round">&#8249;</a>{% endif %}
         	<a>{{ page }}</a>
-			{% if page != maxtask %}<a href="{{ path('task_list', {'page' : page+1}) }}" class="next round">&#8250;</a>{% endif %}
+			{% if 5 <= tasks|length  %}<a href="{{ path('task_list', {'page' : page+1}) }}" class="next round">&#8250;</a>{% endif %}
         	</div>
         </div>
+        
     </div>
 {% endblock %}
