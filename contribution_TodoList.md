@@ -27,7 +27,7 @@ lancer la commande "**git checkout -b MaNouvelleBranche**".
 Etape_4 commiter la Nouvelle branche avec les modification.
 -
 
-une fois votre nouvelle branche creer et votre amélioration, lancer la commande pour commiter vos modification ou amélioration "**git commit -m monamélioration**" et "**git push origin my-new-feature**" pour l'envoyer sur votre Git.
+Une fois vos travaux effectués sur votre branche, lancer la commande pour commiter vos modification ou amélioration "**git commit -m monamélioration**" et "**git push origin my-new-feature**" pour l'envoyer sur votre Git.
 
 
 Etape_5 proposer votre nouvelle amélioration.
