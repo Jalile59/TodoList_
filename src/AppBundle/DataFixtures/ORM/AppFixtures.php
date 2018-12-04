@@ -33,7 +33,10 @@ class AppFixtures extends Fixture
         
         $manager->persist($user);
         
-        $quantityTask = 100;
+
+
+        $quantityTask = 300;
+
         
         for ($i = 0; $i<$quantityTask; $i++){
             $task = new Task();
