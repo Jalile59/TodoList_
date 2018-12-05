@@ -13,12 +13,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class UserController extends Controller
 {
     /**
-     * @Route("/users", name="user_list")
+     * @Route("/users/{page}", name="user_list",requirements ={"page":"\d+"}))
      * 
      */
-    public function listAction()
+    public function listAction($page = 1)
     {
-        return $this->render('user/list.html.twig', ['users' => $this->getDoctrine()->getRepository('AppBundle:User')->findAll()]);
+        $data = $this->getDoctrine()->getRepository(User::class)->getall_paginat($page);
+        
+        return $this->render('user/list.html.twig', ['users' => $data,
+                                                      'page' => $page  
+        ]);
     }
 
     /**
