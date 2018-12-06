@@ -9,6 +9,11 @@ a {
     padding: 8px 16px;
 }
 
+button {
+	
+	margin-right: 5px;
+}
+
 a:hover {
     background-color: #ddd;
     color: black;

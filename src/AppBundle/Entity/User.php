@@ -43,6 +43,11 @@ class User implements UserInterface
     private $email;
     
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+    
+    /**
      * 
      * @ORM\Column(type="array")
      * 
@@ -51,7 +56,7 @@ class User implements UserInterface
     
     public function __construct()
     {
-       
+        $this->setCreatedAt(new \Datetime());
         
     }
     
@@ -126,5 +131,29 @@ class User implements UserInterface
         $this->roles = $roles;
            
         return $this;
+    }
+
+    /**
+     * Set createdAt.
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return User
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt.
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

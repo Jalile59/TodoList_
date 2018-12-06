@@ -15,7 +15,8 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
     {
         $qbd = $this->createQueryBuilder('task')
         ->setFirstResult(($page-1)*5)
-        ->setMaxResults(5);
+        ->setMaxResults(5)
+        ->orderBy('task.createdAt', 'DESC');
         
         $data = $qbd->getQuery()->getResult();
         

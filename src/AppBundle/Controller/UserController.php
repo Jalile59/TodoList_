@@ -74,4 +74,25 @@ class UserController extends Controller
 
         return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
     }
+    
+    /**
+     * 
+     * @Route("/user/{id}/supp", name="user_supp")
+     */
+    
+    public function suppUser($id)
+    {
+        $dataUser = $this->getDoctrine()->getRepository(User::class)->find($id);
+        
+        $manager = $this->getDoctrine()->getManager();
+        
+        $manager->remove($dataUser);
+        
+        $manager->flush();
+        
+        $this->addFlash('success', "L'utilisateur a bien été supprimé.");
+        
+        return $this->redirectToRoute('user_list');
+        
+    }
 }
