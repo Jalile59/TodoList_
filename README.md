@@ -25,3 +25,9 @@ Install data with fixtures with doctrine command:
 -
 
 	"php bin/console doctrine:fixtures"
+
+Login et mot de passe:
+-
+
+	"login = Admin"
+	"Mot de passe = 123"
