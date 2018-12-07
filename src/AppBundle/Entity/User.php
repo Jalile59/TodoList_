@@ -123,19 +123,21 @@ class User implements UserInterface
      */
     public function setRoles( $roles)
     {
-        dump($roles);
+       
         
-        if(isset($roles[0])){
-        if($roles[0] === 'ROLE_ADMIN'){
-            
-            $roles[1] = 'ROLE_USER';
-        }else{
-            
-            $roles[0] = 'ROLE_USER';
+        if(isset($roles[0]))
+        {
+            if($roles[0] === 'ROLE_ADMIN'){
+                
+                $roles[1] = 'ROLE_USER';
+            }else{
+                
+                $roles[0] = 'ROLE_USER';
+            }
+            }else{
+                $roles[0] = 'ROLE_USER';
         }
-        }else{
-            $roles[0] = 'ROLE_USER';
-        }
+        
         $this->roles = $roles;
            
         return $this;

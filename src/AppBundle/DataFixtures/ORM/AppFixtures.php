@@ -48,7 +48,7 @@ Le texte généré est du pseudo latin et peut donner l'impression d'être du vr
 Faux-Texte est une réalisation du studio de création de sites internet indépendant Prélude Prod.
 
 Si vous aimez la photographie d'art et l'esprit zen, jetez un œil sur le site de ce photographe à Palaiseau, en Essonne (France).");
-            $task->setUser($user);
+           // $task->setUser($user);
             
             $manager->persist($task);
             

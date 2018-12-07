@@ -9,8 +9,23 @@ a {
     padding: 8px 16px;
 }
 
+#test{
+	background-color: #e3f2fd;
+border:1px solid gray;
+padding:5px;
+box-shadow:2px 2px 10px gray inset;
+-moz-box-shadow:2px 2px 10px gray inset;
+-webkit-box-shadow:2px 2px 10px gray inset;
+}
+
+#datetimeauteur{
+	margin-left: 5px; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 button {
-	
+	margin-top: 10px;
 	margin-right: 5px;
 }
 

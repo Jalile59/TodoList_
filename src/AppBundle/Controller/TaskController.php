@@ -141,26 +141,33 @@ class TaskController extends Controller
         $usercurrent = $this->getUser();
         $roleusercurrent = $usercurrent->getRoles();
         $parentTask = $task->getUser();
+        
 
-        if($usercurrent != $parentTask or $roleusercurrent =='ROLE_ADMIN')
+        if($usercurrent == $parentTask or $roleusercurrent[0] =='ROLE_ADMIN' )
         {
+            
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($task);
+            $em->flush();
+            
+            $cache = new FilesystemAdapter();
+            
+            $cache->clear();
+            
+            $this->addFlash('success', 'La tâche a bien été supprimée.');
+            
+            return $this->redirectToRoute('task_list');
+        }else
+        {
+            
+        
+        ///////////////////////////////////////////////////
             $this->addFlash('error', 'you cannot deleted this task !');
             
             return $this->redirectToRoute('homepage');
+
         }
-        ///////////////////////////////////////////////////
-        
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($task);
-        $em->flush();
-        
-        $cache = new FilesystemAdapter();
-        
-        $cache->clear();
-
-        $this->addFlash('success', 'La tâche a bien été supprimée.');
-
-        return $this->redirectToRoute('task_list');
     }
     
     /**
