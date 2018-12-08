@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use AppBundle\Entity\User;
 
 
 class TaskController extends Controller
@@ -183,4 +184,5 @@ class TaskController extends Controller
         
         return $this->redirectToRoute('task_list');
     }
+
 }

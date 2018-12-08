@@ -11,4 +11,8 @@ services:
      twig.extension.text:
          class: Twig_Extensions_Extension_Text
          tags: 
-             - { name: twig.extension }      
+             - { name: twig.extension }
+             
+     service.tools:
+        class: AppBundle\Tools\Tools 
+        arguments: [ "@doctrine.orm.entity_manager" ]    

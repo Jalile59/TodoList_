@@ -90,7 +90,7 @@ class UserController extends Controller
         
         $manager->flush();
         
-        $this->addFlash('success', "L'utilisateur a bien été supprimé.");
+        
         
         return $this->redirectToRoute('user_list');
         

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Symfony\Component\Validator\Constraints\IsNull;
+
 /**
  * TaskRepository
  *
@@ -24,6 +26,16 @@ class TaskRepository extends \Doctrine\ORM\EntityRepository
         
         return $data;
         
+    }
+    
+    public function taskanonyme()
+    {
+        $qbd = $this->createQueryBuilder('task')
+        ->where('task.user IS NULL' );
+        
+        $data = $qbd->getQuery()->getResult();
+        
+        return $data;
     }
     
 }
