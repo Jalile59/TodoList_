@@ -81,9 +81,8 @@ class TaskController extends Controller
             $em->persist($task);
             $em->flush();
             
-            $cache = new FilesystemAdapter();
-            
-            $cache->clear();
+            $tools = $this->get('service.tools');
+            $tools->clearCache();
 
             $this->addFlash('success', 'La tâche a été bien été ajoutée.');
 
@@ -106,6 +105,9 @@ class TaskController extends Controller
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'La tâche a bien été modifiée.');
+            
+            $tools = $this->get('service.tools');
+            $tools->clearCache();
 
             return $this->redirectToRoute('task_list');
         }
@@ -126,9 +128,8 @@ class TaskController extends Controller
 
         $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
         
-        $cache = new FilesystemAdapter();
-        
-        $cache->clear();
+        $tools = $this->get('service.tools');
+        $tools->clearCache();
 
         return $this->redirectToRoute('task_list');
     }
@@ -152,9 +153,8 @@ class TaskController extends Controller
             $em->remove($task);
             $em->flush();
             
-            $cache = new FilesystemAdapter();
-            
-            $cache->clear();
+            $tools = $this->get('service.tools');
+            $tools->clearCache();
             
             $this->addFlash('success', 'La tâche a bien été supprimée.');
             

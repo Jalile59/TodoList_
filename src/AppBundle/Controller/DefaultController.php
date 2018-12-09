@@ -17,10 +17,9 @@ class DefaultController extends Controller
         
         $tools = $this->get('service.tools');
         
-        $check = $tools->checktaskOpheline();
+        $check = $tools->checktaskOpheline(); // affecte les taches non attachées à l'utilisateur anonyme.
         
-       
-        
+
         if($check["taskOrph"])
         {
             $this->addFlash('success', "TodoList a détecté  ".$check["nombreAffect"]." taches non attaché à un utilisateur, ils ont était attribuéent à l'utilisateur Anonyme ");

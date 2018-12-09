@@ -6,6 +6,8 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\Task;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+
 
 
 class Tools extends EntityRepository
@@ -48,6 +50,13 @@ class Tools extends EntityRepository
             return  $tabR = ["taskOrph" => false];
         }
     
+    }
+    
+    public function clearCache()
+    {
+        $cache = new FilesystemAdapter();
+        
+        $cache->clear();
     }
 
 }
