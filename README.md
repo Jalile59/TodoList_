@@ -1,6 +1,8 @@
 ToDoList
 ========
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d527a9f3b60844b199c7215fb07e0da8)](https://app.codacy.com/app/Jalile59/TodoList_2?utm_source=github.com&utm_medium=referral&utm_content=Jalile59/TodoList_2&utm_campaign=Badge_Grade_Dashboard)
+
 Link: 
 
 Prérequis:
