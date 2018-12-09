@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e65f84f911ae4aacb8b37ff713bf7104)](https://www.codacy.com/app/Jalile59/TodoList_2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Jalile59/TodoList_2&amp;utm_campaign=Badge_Grade)
+
 ToDoList
 ========
 
