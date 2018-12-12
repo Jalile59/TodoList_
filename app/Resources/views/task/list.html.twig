@@ -4,14 +4,14 @@
 
 {% block body %}
     <div class=row>
-    	<div lass="col-sm-12">
+    	<div lass="col-sm-12 col-xs-11">
     		<a href="{{ path('task_create') }}" class="btn btn-info pull-right">Créer une tâche</a>
     	</div>
     </div>
     <div class="row">
         {% for task in tasks %}
         <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail" id="test">
+            <div class="thumbnail" style="margin-bottom:0px">
                 <div class="caption">
                     <h4 class="pull-right">
                         {% if task.isDone %}<span class="glyphicon glyphicon-ok"></span>{% else %}<span class="glyphicon glyphicon-remove"></span>{% endif %}
@@ -23,8 +23,10 @@
                     <div class= "col-sm-6 col-lg-6 col-md-6"><p>{{task.createdAt|date('Y-m-d H:i:s')}}</p></div>
                     <div class= "col-sm-offset-1 col-sm-5 col-lg-5 col-md-5">{% if task.user.username is defined %}<p>By {{task.user.username}}</p>{% else %}<p>By anonyme</p>{% endif %}</div>
                 </div>
-                <div>
-                
+
+            </div>
+                            <div class="row">
+                	<div class="col-sm-12 col-lg-12 col-md-12 col-xs-11">
                     <form action="{{ path('task_toggle', {'id' : task.id }) }}">
                         <button class="btn btn-success btn-sm pull-right">
                             {% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée{% endif %}
@@ -34,8 +36,8 @@
                         {% if usercurrent == task.user or roleusercurrernt =='ROLE_ADMIN' %}<button class="btn btn-danger btn-sm pull-right">Supprimer</button>{% endif %}
                         
                     </form>
+                    </div>
                 </div>
-            </div>
         </div>
         {% else %}
             <div class="alert alert-warning" role="alert">
